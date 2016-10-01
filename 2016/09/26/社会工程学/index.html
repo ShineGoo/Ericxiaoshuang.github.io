@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Eric" />
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何防范社会工程学攻击?">
+<meta property="og:url" content="http://yoursite.com/2016/09/26/社会工程学/index.html">
+<meta property="og:site_name" content="Eric">
+<meta property="og:image" content="http://7xvq0f.com1.z0.glb.clouddn.com/2016-09-28_banner.png">
+<meta property="og:image" content="http://7xvq0f.com1.z0.glb.clouddn.com/2016-10-02-0b55b319ebc4b74501213b70cdfc1e178a82151a.jpg">
+<meta property="og:image" content="http://7xvq0f.com1.z0.glb.clouddn.com/2016-10-02-41Ba27ev7UL._SX446_BO1%2C204%2C203%2C200_.jpg">
+<meta property="og:image" content="http://ir-cn.amazon-adsystem.com/e/ir?t=28381086707-23&l=as2&o=28&a=B00GWP2GG8">
+<meta property="og:updated_time" content="2016-10-01T20:36:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何防范社会工程学攻击?">
+<meta name="twitter:image" content="http://7xvq0f.com1.z0.glb.clouddn.com/2016-09-28_banner.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+
+
+    <link rel="shortcut icon" href="http://7xvq0f.com1.z0.glb.clouddn.com/web_code_48px_1179075_easyicon.net.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>如何防范社会工程学攻击? | Eric</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?569d40158b9c7fb5c8442aad62982d92";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="http://7xvq0f.com1.z0.glb.clouddn.com/psb.jpeg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Eric</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">目录</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/283810867" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" href="https://book.douban.com/people/49889365/" title="豆瓣"></a>
+                            
+                                <a class="fa 新浪微博" href="http://weibo.com/u/2534635404?refer_flag=1001030101_&is_all=1" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/Ericxiaoshuang/Ericxiaoshuang.github.io" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AE/">AE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Adobe-After-Effects/">Adobe After Effects</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BEC/">BEC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dog/">dog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown语法/">markdown语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ps/">ps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sai/">sai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wordpress/">wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优酷/">优酷</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优酷视频/">优酷视频</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健身/">健身</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/出国/">出国</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加班/">加班</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周末/">周末</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图床/">图床</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/坚持/">坚持</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习计划/">学习计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信/">微信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信公众平台/">微信公众平台</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文档/">文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅行/">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日志/">日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/标签/">标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/看书/">看书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/看海/">看海</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/礼物/">礼物</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/社会工程学/">社会工程学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网页开发/">网页开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/英语/">英语</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/视频/">视频</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记忆/">记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计/">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书/">读书</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.whyigong.com/forum.php">武汉义工联盟</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.coding.me/yelee/">hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://user.qzone.qq.com/283810867/infocenter?ptsig=sjTVAP61T5gTOitwvyUMfKQ0t3xbi-LnyRU5bFvi55c_">qq空间</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Eric</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="http://7xvq0f.com1.z0.glb.clouddn.com/psb.jpeg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Eric</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">目录</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/283810867" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" target="_blank" href="https://book.douban.com/people/49889365/" title="豆瓣"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/2534635404?refer_flag=1001030101_&is_all=1" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Ericxiaoshuang/Ericxiaoshuang.github.io" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-社会工程学" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/26/社会工程学/" class="article-date">
+      <time datetime="2016-09-26T08:00:00.000Z" itemprop="datePublished">2016-09-26</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何防范社会工程学攻击?
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/技术博客/">技术博客</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/社会工程学/">社会工程学</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <excerpt in="" index="" |="" 首页摘要=""> 
+
+<p><img src="http://7xvq0f.com1.z0.glb.clouddn.com/2016-09-28_banner.png" alt="2016-09-28_banner.png"></p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+
+
+<hr>
+<p>原文链接：<br><a href="https://www.zhihu.com/question/26346821/answer/32556896" target="_blank" rel="external">https://www.zhihu.com/question/26346821/answer/32556896</a></p>
+<iframe src="http://www.56.com/iframe/NzYwOTM4OTg" width="320" height="270" frameborder="0" allowfullscreen></iframe>
+
+
+<p>网络安全中的『社会工程学』,必然会引起热议<br>它再也不是小众的论题了,<br>因为事关每个人的安全,互联网时代没有隐私,大家都是在裸奔”<br>先看下最近时期的大尺度新闻《疯狂来往》陷入艳照门 网友疯狂围观<br>再更具体的认识一下评论：网络“社会工程学”里没有隐私<br>可以参考百度百科社会工程学_百度百科</p>
+<p>这个视频是安全意思的至尊经典,请看完后,再阅读后面的文字描述<br>别让网络泄露你的隐私</p>
+<h3 id="别让网络泄露你的隐私"><a href="#别让网络泄露你的隐私" class="headerlink" title="别让网络泄露你的隐私"></a>别让网络泄露你的隐私</h3><p><a href="http://www.56.com/u45/v_NzYwOTM4OTg.html/1030_humormaster.html" target="_blank" rel="external">http://www.56.com/u45/v_NzYwOTM4OTg.html/1030_humormaster.html</a></p>
+<p>好了,我并不是一枚 社攻狮<br>但是在这里普及一下相关的内容还是可以的<br>国外最好的著作是 &lt;社会工程–安全体系中的人性漏洞&gt;<br>国内也有一本很不错的书—&lt;社会工程学攻击2&gt;,第一部是&lt;社会工程学档案袋&gt;但是有点过时了</p>
+<p>在此我把 国外书中的精彩论述摘抄如下</p>
+<p>以个人经验来看，不管事情看似多么不可能，几乎总会有一种巧妙的、意想不到的解决方法<br>简单而致命的攻击每天都在发生，所以人们需要掌握知识、改变密码策略、改变远程服务器的访问方式，还需要在面试、交付、雇用和解聘员工方面改变思路。如不具备知识，也便没有改变的动力。</p>
+<blockquote>
+<p>真正的社会工程不仅是以为自己在扮演角色，而且在那个时刻，你就是那个人，你就是那个角<br>色，你的生活就是那样的将这些知识和开锁匠、使用隐秘摄像机的间谍、专业信息收集人员的技&gt; 巧相结合，你会成为一个才华出众的社会工程人员</p>
+</blockquote>
+<p>我继续说到人们经常选择最简单的“安全问题”，例如“你（或你母亲）的闺名”，而这些信息通过因特网或者几个虚假电话就可以轻易获得。一个问询电话或者简单的网络搜索就能够找到生日和纪念日信息<br>收集这些信息使销售人员可以在“熟人介绍”的情况下拜访客户，并能够迅速获得对方的信任</p>
+<p>我通常为不同类型的数据建立不同的BasKet，例如域名查询信息、社交媒体信息等。然后，使用谷歌地图或谷歌地球获取目标客户的建筑和设施图片，保存BasKet<br>其中有很多有用的信息和标签<br>我收集的信息包括目标客户的网站内容、域名查询信息、社交网络、图片、员工联系方式、简历、论坛、爱好等一切可能与目标公司相关的信息<br>其中就有两个特别适用于信息收集和存储的工具，一个是Dradis，另一个为BasKet<br>公司或者个人网站是信息的重要来源<br>如果你在LinkedIn或者Facebook中找到一名员工，很有可能他的好几个同事也在其中。集这些数据，可以更加清楚地分析这家公司以及它的员工。<br>很多员工会在社交网站上用标签的形式展示自己的职位，这可以令社会工程人员勾勒出公司某个部门的规模以及组织架构。</p>
+<h3 id="谷歌中记录了很多你认为已经删除的数据"><a href="#谷歌中记录了很多你认为已经删除的数据" class="headerlink" title="谷歌中记录了很多你认为已经删除的数据"></a>谷歌中记录了很多你认为已经删除的数据</h3><p>就如同大型数据库一般。只要设定好查询方式，就能得到你想要的信息<br>例如， 在谷歌搜索框中输入site:<a href="http://microsoft.com" target="_blank" rel="external">http://microsoft.com</a> filetype:pdf，就能得到<a href="http://microsoft.com网站上的所有PDF文档列表。" target="_blank" rel="external">http://microsoft.com网站上的所有PDF文档列表。</a><br>熟知搜索语法可以帮助你找到和目标相关的信息，这对信息收集来说很重要。我习惯于使用语法（类似于filetype:pdf）来检索PDF、DOC、XLS和TXT文件。当然，员工留在服务器上的DAT和CFG文件以及其他数据库和配置文件等也是值得收集的信息不过重点是懂得谷歌提供的各种操作符可以帮助你创造出属于自己的搜索语法<br>Whois能提供域名数据库查询服务。Whois数据库中有很多有价值的信息，有些时候甚至包<br>括网站管理员完整联系方式很多人都没意识到智能手机拍摄的照片会隐藏GPS信息</p>
+<h3 id="不同种类的信息可以帮助你全面地了解目标"><a href="#不同种类的信息可以帮助你全面地了解目标" class="headerlink" title="不同种类的信息可以帮助你全面地了解目标"></a>不同种类的信息可以帮助你全面地了解目标</h3><p>人们喜欢在Twitter上分享自己的地理位置、和谁在一起以及正在做的事情等。Blippy①能绑定人们的银行账号，然后向好友推送你的每笔消费信息，包括从哪里购买、花费多少等。含有地理位置信息的照片，以及Facebook这种用来分享个人照片、故事和其他相关信息的社交网站，是社会工程人员特别喜欢的信息源。只需片刻功夫，目标人物的住址、工作、照片、兴趣等信息就呈现在眼前了</p>
+<h3 id="社交网站成为最佳信息源的另一个原因是可以匿名伪装"><a href="#社交网站成为最佳信息源的另一个原因是可以匿名伪装" class="headerlink" title="社交网站成为最佳信息源的另一个原因是可以匿名伪装"></a>社交网站成为最佳信息源的另一个原因是可以匿名伪装</h3><p>公开数据可能来自目标企业内部或者外部，包括季度报告、政府报告、分析报告及公开交易</p>
+<p>公司的收入信息等。例如，邓白氏集团（Dunn and Bradstreet）以及其他公司的销售分析报告都能以极低的价格买到，而这些报告中通常会包含目标公司的大量详细信息。<br>上面仅仅是通过观察可以得出答案的几个问题而已。花上一段时间观察目标，并用隐藏式摄像机录制下来，然后回去慢慢研究和分析，你会学到很多知识并且你的信息量也会暴增。<br>翻找垃圾箱是一种快速收集所需信息的方法。</p>
+<p>不过，翻垃圾箱时一定要记住以下几点。穿质量好的鞋子或靴子。没有比跳进垃圾堆，然后被钉子戳到脚更令人抓狂的事了。确保你的鞋子合脚且鞋带系紧了，并能保护脚不为利器所伤。穿深颜色的衣服。这点不需要过多的解释。你肯定会穿那些丢掉也不会心疼的衣服，而且深色的衣服不容易被发现。带一个手电筒。拿到了赶紧溜。除非你是在偏僻到不可能被抓到的地方，否则最好是拿走一些垃圾袋，到其他地方去翻找。</p>
+<p>WYD这样的工具可以将个人或者公司网站上的信息收集起来，根据网站上涉及的词语来创建可能的密码列表。人们通常会使用文字、姓名或者日期作为密码。这种类型的软件能够轻而易举地生成密码列表【字典】</p>
+<p>作为一名社会工程人员，信息收集完成后，必须开始规划如何攻击。为此，首先要建立模型，列出信息使用攻略。交流模型的建立便是最佳的开始方式之一。</p>
+<p>如何有效地使用这些要素呢？运用交流模型的第一步是带着目的动手实践，首先从社会工程中上演的经典剧情开始。编写一个网络钓鱼邮件，尝试让25~50个雇员在工作时间访问一个嵌有恶意代码的非商业网站，以达到入侵其公司网络的目的</p>
+<p>登门拜访，伪装成一个前来面试的人员，装作不小心将咖啡洒在了简历上，并说服前台工作人员允许你用USB存储器插入到电脑里重新打印一份。</p>
+<h3 id="如何发送钓鱼邮件？！"><a href="#如何发送钓鱼邮件？！" class="headerlink" title="如何发送钓鱼邮件？！"></a>如何发送钓鱼邮件？！</h3><p>是让前台接待员接受你的带有恶意程序的U盘。在U盘插入电脑后，该程序会自动加载并提取系统中所有与账户相关的信息，比如用户名、密码、电子邮件账户以及包含系统中所有账户密码的SAM文件等，然后将这些数据复制到U盘指定诱导的效果如此之好的原因如下：<br>大部分人希望看上去比较有礼貌，尤其是对陌生人；<br>专业人士希望自己看起来见多识广、很有才气；<br>如果得到赞赏，大部分人通常会越说越起劲并泄露更多的秘密；<br>大部分人不会为了撒谎而撒谎；<br>大部分人对貌似关心自己的人会比较友善</p>
+<p>再看另外一个非常简单的例子。一个朋友走过来说道：“我告诉你一件特别有趣的事情。你会怎么反应呢？可能在他说出之前你就开始微笑了，你期待一个好玩的故事，所以在等待一个大笑的契机。他对你进行了铺垫，使你对幽默故事无限期待</p>
+<p>铺垫本身就是一种技巧。以一种隐晦或婉转的方式植入想法或思路，比诱导本身更需要技巧。</p>
+<p>根据目标的不同，特别简单的铺垫可能就是找出对象开的是哪个品牌的车或者其他一些看似无关紧要的信息。你可能“碰巧”与目标处于同一家熟食店，于是开始一次随意的聊天表达共同兴趣是诱导的一个重要方面。在上面的特殊情境里，甚至比“唤醒自我”更加有效，因为它迅速拓展了关系，超越了初始交流范畴</p>
+<p>在挖掘秘密方面没有比酒精更有效的东西，这一点很悲哀，但却是事实。如果在上述5个场景中加入酒精元素，则效果会放大10倍你也可以在社会工程活动中采用诱导术。所有的答案并非来自同一个地方。你可能从某人口中得知有关日期和地点的信息，然后使用这一信息从他人口中诱导出更多的信息，以此不断深入，直到得到全部的信息</p>
+<h3 id="在互联网上，你可以随心所欲地装扮成任何人"><a href="#在互联网上，你可以随心所欲地装扮成任何人" class="headerlink" title="在互联网上，你可以随心所欲地装扮成任何人"></a>在互联网上，你可以随心所欲地装扮成任何人</h3><p>这种伪装技术多年来一直被恶意黑客用来攫取利益，而且不仅限于互联网。</p>
+<p>无论去什么地方，都要是所扮演的角色。此外，很多专业社会工程人员具有多个在线身份、社交网站的身份、电子邮件和其他账户，可供伪装的时候用。</p>
+<p>学会用不同的方言与人沟通会给人留下深刻的印象</p>
+<p>这里想说明的是，电话仍然是一种非常强大的社会工程工具，不该因为互联网的非人格化性质而减少对它的使用。如果没有一组人陪着你训练或磨练这些技能，你必须得有创造力。试一试给家人或者朋友打电话，看看你能在多大程度上操控他们。另一种练习方法是给自己录音，就像在打电话一样，然后重放一遍看看听起来如何。</p>
+<p>如果我想假装是在一个忙碌的办公室里给你打电话，我可以到Thriving Office下载一段音频。<br>此外，伪造电话号码欺骗要相对简单一些像Caller ID Spoofing, Voice Changing &amp; Call Recording提供的服务或者一些自制的方法，都可以帮助社会工程人员改变来电显示的电话号码，让目标认为你是从公司总部、白宫或者当地银行打过来的。</p>
+<h3 id="利用这些服务可以伪造出世界上任何地方的电话号码"><a href="#利用这些服务可以伪造出世界上任何地方的电话号码" class="headerlink" title="利用这些服务可以伪造出世界上任何地方的电话号码"></a>利用这些服务可以伪造出世界上任何地方的电话号码</h3><p>现在我用以前审计过程中使用过或看见过的例子将上面几点结合起来。通过打电话的良好诱导，一名社会工程人员知道了公司所用的清洁公司的名字。通过网上搜索，他找到了能打印出来的清洁公司的标识。有很多本地或者网上商店可以按照客人的要求将标识印在衬衫或帽子上。简单的伪装，穿着有标识的衣服，带着“工具”（如写字板），并且故事情节简单而又好记。正是它的简单性和缺少细节使得这次伪装更加令人信服，进而发挥作用</p>
+<p>伪装时还有其他一些可利用的工具。</p>
+<p>道具有助于让目标相信你的伪装。比如，车辆的磁性标志、配套的制服或装备、工具或者其<br>他手提设备，还有最重要的——名片。，</p>
+<p>微表情这一话题就是以世界著名的心理学家和研究学者保罗·艾克曼博士的研究成果为基础的，他利用自己的天赋开发出的解读人们面部表情的技术，改变了司法人员、政府官员、医生以及普通人与他人交往的方式。神经语言程序学的鼻祖理查德·布兰德勒（Richard Brandler）和约翰·葛瑞德（John Grinder）提出的一些理论，改变了人们对思维模式和语言重要性的认识。这些都是相当具有争议的领域，本章将揭开其神秘面纱，并且讲解其在社会工程中的应用。</p>
+<p>缓冲区溢出通常是由黑客编写的程序，通过宿主程序的正常使用，可以利用它执行通常带有恶意目的的代码。一旦运行起来，程序会按照黑客预先设定好的步骤执行任务。</p>
+<p>也许你可以戴一个大的、闪亮的银戒指，谈话时不断地打手势，也许你会看到戒指引起了他的注意。他会不会感兴趣地伸手触摸，甚至想要拿在手里仔细看看？动觉思维者遇到这种东西会很想触摸你还得明白人们在日常生活中是如何作决定的。人们所作出的大部分决定都是下意识的，如怎样开车上班、冲咖啡、刷牙及穿什么衣服等都没有经过真正的思考</p>
+<p>NLP实践人员要学会引用。他深知演讲者以故事和引用的方式去传达信息会更为有效。多读、多用引用，然后将指令嵌入其中，是对该技术的一种极致应用。</p>
+<p>回报是一种固有的期望，指的是在他人对你好的时候你会给予友善的回应。举个简单的例子：<br>当你走进一幢大楼的时候，如果有人为你开门，他会期望你对此表示感谢并且希望你报之以李，<br>能为他打开下一扇门</p>
+<h3 id="1-送出某样东西"><a href="#1-送出某样东西" class="headerlink" title="1. 送出某样东西"></a>1. 送出某样东西</h3><p>你送出的不能是完全没有用的东西，必须是有价值的东西。假设送出的是一本精装小说，但<br>是接收方不收集或阅读该语种的书，这样做就徒劳无功。<br>送出的可以是一项服务、一件物品、有价值的信息、帮助或者任何接收方认为有价值的东西，<br>甚至简单到为对方开门或者拣起一件掉落的物品<br>经济学的基础就是对那些可供选择的资源进行分配。这种分配由待分配物的稀缺性驱动，<br>资源越稀少，物品的感知价值就越高。这也是黄金比食盐值钱得多，而食盐比黏土值钱得多的因。</p>
+<p>社会工程人员可以在利用信息的稀缺性时说：“我不能说这个，但是……”也可以说：“我不<br>确定你是否听过这个消息，但是我听说……”以严肃的语调说出这样的句子意味着信息很难得<br>人们更愿意听从他们眼中的权威人士的指导或建议。</p>
+<p>要找到足够自信、敢于直接质疑权威的人是很难的有这种权威。作为社会工程人员，伪装成执法人员或者其他政府官员通常是违法的，不过伪装成保安、银行保安或者其他类型的具有执行权威的人就没问题，也常用于社会工程实践。</p>
+<p>在西方国家，三种权威符号特<br>别有效。可以用下面三种符号之一来获得别人的顺从（没有其他证据表明他是权威）。<br>头衔<br>衣服<br>汽车<br>我不敢相信自己真的可以看懂这封邮件。这就是人类大脑不可思议的能力。根据剑桥大学的一项研究，单词中的字母顺序并不重要，唯一重要的是首末字母要正确。就算其他字母完全混乱，你也可以看懂</p>
+<h3 id="2-物理安全"><a href="#2-物理安全" class="headerlink" title="2.物理安全"></a>2.物理安全</h3><p>是指企业或个人为保障安全所采取的不涉及计算机的措施，通常涉及锁、摄像机及<br>窗户传感器等工具。【想一想还可以延伸到其他一些什么】懂得物理安全并知晓其运作原理是成为优秀社会工程人员的前提之当然，在收集目标信息的时候，拍摄或记录需要打开的锁的类型、品牌和具体型号，也是个不错的主意。</p>
+<p>了解这些信息能够为你的社会工程实践做好铺垫。<br>许多公司开始采用射频识别（RFID）、磁卡或其他类型的电子准入技术，这可能让人觉得开锁技术已经过时了。实则不然，锁还在用通过一些简单的手法就可逃过摄像头的法眼，比如用LED强光照镜头或者用帽子或头巾遮住面部。<br>录音设备的形状和大小各异。我有一个小型录音器，是一支可以使用的钢笔。该装置恰好能放在胸前的口袋里，清晰记录声音的范围可达20英尺（约为6.1米）远。加上2GB的内存，<br>我可以轻松地记录数小时的谈话，然后进行分析。可以找到形状像纽扣和钢笔的摄像机，它们可以隐藏在笔尖、时钟、泰迪熊玩具、假的螺帽和烟雾报警器中，基本上能想到的任何设备都可以隐藏摄像机</p>
+<p>信不信由你，这条领带隐藏着全彩摄像头，使用12伏电源，并连接一个小型录制设备。戴着这条领带进行社会工程审计，绝对可以录制70度视角以内的一切事物</p>
+<h3 id="3-GPS跟踪器数据分析【百度云-GPS跟踪】"><a href="#3-GPS跟踪器数据分析【百度云-GPS跟踪】" class="headerlink" title="3. GPS跟踪器数据分析【百度云 GPS跟踪】"></a>3. GPS跟踪器数据分析【百度云 GPS跟踪】</h3><p>跟踪器采集的数据对社会工程人员大有裨益。如果能够跟踪到目标公司的CEO每次喝咖啡的地方、最喜欢的商店以及健身会所等信息，将有助于社会工程人员作出成功率最高的攻击计划。<br>收集和分类信息可能是很多社会工程人员的薄弱环节。如果存在一个工具，它可以同时对一<br>个域名、IP地址，甚至是一个人进行几十种搜索；能提示各项信息的权重，显示信息重要与否；<br>有一个GUI界面，可以用不同颜色表示不同的对象</p>
+<p>我首先打开Maltego。通过该公司的域名，提取所有网站页面和Whois数据库中的电子邮件地<br>址，这是个很好的信息基础。然后我深入查看这位CEO的电子邮件是否在其他网站或链接中使用<br>过。我发现他给当地的一家餐厅写了一些评论，并公开了他的电子邮件地址。同样，他在对另一<br>个州的一家餐厅的评论中也给出了电子邮件地址。从评论中可以发现，他去这个州探亲时去过这<br>家餐厅，评论中甚至提到了他兄弟的名字。使用Maltego做进一步调查，我找到了他父母和兄弟<br>在这一地区的住址。通过对姓氏进行搜索，我找到一些新的链接页面，其中提到了他在那里创业时使用的另一个邮箱，以及他与当地教堂发生了矛盾，而后转到了另一家教堂。随后，我发现他<br>Facebook上链接的一篇博文，其中有他们一家人在观看完最喜欢的球队比赛后的一些照片。下面是我花了不到两小时的时间</p>
+<p>社会工程人员花费了大量时间来完善自身的技能，然而，许多攻击方式需要通过创建附加恶<br>意代码的邮件或PDF文档来实现</p>
+<p>这个工具让社会工程人员点击几下鼠标就能创建PDF文件、电子邮件及网站等，这样就可将注意力集中到社会工程中的社会”这部分上来了。<br>社会工程审计人员使用SET可以创建有针对性的电子邮件对客户进行测试，然后记录有多少<br>雇员上当了。这个信息随后可用于培训，以帮助员工识别和避免这些陷阱。</p>
+<p>使用SET进行鱼叉式网络钓鱼攻击，选择选项1。选择1后，会看到如下几个选项：<br>执行群发邮件攻击<br>创建一个文件格式负载<br>创建一个社会工程模板</p>
+<p>要进行邮件式钓鱼攻击，选择第一个选项。第二个选项用于创建一个恶意的PDF或其他文件，<br>以备作为邮件附件发送。第三个选项用以创建模板，待日后使用。<br>篡改来电显示<br>来电显示在商务和家用电话中都已成为一项普遍的技术，特别是在当前手机普遍取代固定电<br>话的情况下，来电显示已成为日常生活的一部分。成功的社会工程人员必须意识到这一事实并且<br>知道如何加以利用</p>
+<p>通用用户密码分析工具（Common User Password Profiler，CUPP）使得密码分析工作更加简单。<br>Muris Kurgas，或称为j0rgan，开发了这个神奇的小工具。它是包含在BackTrack渗透测试工<br>具中的一个脚本，也可以通过<a href="http://www.social-engineer.org/cupps.tar.gz下载。【字典】" target="_blank" rel="external">http://www.social-engineer.org/cupps.tar.gz下载。【字典】</a><br>在社会工程活动中使用电话时，可以篡改来电显示甚至变换说</p>
+<h3 id="话的声音【变声软件】"><a href="#话的声音【变声软件】" class="headerlink" title="话的声音【变声软件】"></a>话的声音【变声软件】</h3><p>我希望读到这里的人也可以想想自己是如何通过电话泄露信息的。骗子和诈骗专家用许多方<br>法窃取老年人、经济困难的人和其他人的信息。打电话仍旧是一个强有效的方式。充分认识厂商、供应商和银行的政策，了解他们会不会通过电话询问信息，可以帮你避免掉入许多陷阱。例如，许多银行在政策中申明他们永远不会通过电话询问社保号码或银行账号。知道这些有助于你保护自己，以免被骗而变得一贫如洗。</p>
+<p>网络钓鱼攻击 有针对性的邮件攻击，查看员工是否容易受到恶意邮件攻击。<br>现场伪装攻击 选择精确且可控的伪装，然后进行电话或面对面攻击，测试员工是否容<br>易上当受骗。<br>引诱 一种在设法进入目标建筑物或其他设施后的现场攻击，将包含恶意代码和文件的U盘或DVD光盘放在现场，测试有没有人上钩。<br>【故意 掉下名片 或是 U盘，有木马 或个人信息】</p>
+<p>尾随 一种现场攻击，审计人员试图尾随一群公司员工混入大楼。<br>物理安全（红队) 试图通过物理方式进入办公室，获取公司有价值的资产或信息。</p>
+<h3 id="9-7-2-收集与组织信息的重要性"><a href="#9-7-2-收集与组织信息的重要性" class="headerlink" title="9.7.2 收集与组织信息的重要性"></a>9.7.2 收集与组织信息的重要性</h3><p>我觉得信息收集的重要性再怎么反复强调也不为过。每一个社会工程项目的质量、专业性以<br>及成功正是取决于信息收集的水平。网络是浩瀚无边的信息源。公司会将财务记录、员工的姓名和职位、联系信息、公司的照片、安全规章、合同、厂商和供应商的名字、人们的个人资料等都发布到网上。员工和普通人也会将私人的照片、地址、购买的东西、租约、合同以及喜欢的食物、队和音乐等信息放到网上</p>
+<p>题外话 社会工程学中,有这段描述<br>一切通过各种渠道散布、传播、教授黑客技术的行为都构成传授犯罪方法罪，如出版的《黑客社会工程学攻击2》已被公安机关网安部门所关注，予以打击；一切使用黑客技术犯罪的行为都将受到法律严厉制裁，请读者慎用这把“双刃剑”。</p>
+<p>我可不希望被查水表,希望大家提高自己的安全意识,并从中学会真正的观察分析及其他</p>
+<p>你能够提高自己读懂他人的能力，并能和周围的人进行更加有效的沟通。不要仅将它们运用在安全实践之中，要运用于生活的各个方面，这会改变你的生活。社会工程是一门真正的艺术。尽情享受它吧！<br><img src="http://7xvq0f.com1.z0.glb.clouddn.com/2016-10-02-0b55b319ebc4b74501213b70cdfc1e178a82151a.jpg" alt=""><br><img src="http://7xvq0f.com1.z0.glb.clouddn.com/2016-10-02-41Ba27ev7UL._SX446_BO1%2C204%2C203%2C200_.jpg" alt=""></p>
+<p>世界顶级黑客写的一本书  :<br><a href="https://www.amazon.cn/gp/product/B00GWP2GG8/ref=as_li_tf_tl?ie=UTF8&camp=536&creative=3200&creativeASIN=B00GWP2GG8&linkCode=as2&tag=28381086707-23" target="_blank" rel="external">社会工程:安全体系中的人性漏洞</a><img src="http://ir-cn.amazon-adsystem.com/e/ir?t=28381086707-23&l=as2&o=28&a=B00GWP2GG8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;"></p>
+</the></excerpt>
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/09/26/English/">
+                    以英语为例,如何记录和输出?
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#别让网络泄露你的隐私"><span class="toc-number">1.</span> <span class="toc-text">别让网络泄露你的隐私</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#谷歌中记录了很多你认为已经删除的数据"><span class="toc-number">2.</span> <span class="toc-text">谷歌中记录了很多你认为已经删除的数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不同种类的信息可以帮助你全面地了解目标"><span class="toc-number">3.</span> <span class="toc-text">不同种类的信息可以帮助你全面地了解目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#社交网站成为最佳信息源的另一个原因是可以匿名伪装"><span class="toc-number">4.</span> <span class="toc-text">社交网站成为最佳信息源的另一个原因是可以匿名伪装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何发送钓鱼邮件？！"><span class="toc-number">5.</span> <span class="toc-text">如何发送钓鱼邮件？！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在互联网上，你可以随心所欲地装扮成任何人"><span class="toc-number">6.</span> <span class="toc-text">在互联网上，你可以随心所欲地装扮成任何人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用这些服务可以伪造出世界上任何地方的电话号码"><span class="toc-number">7.</span> <span class="toc-text">利用这些服务可以伪造出世界上任何地方的电话号码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-送出某样东西"><span class="toc-number">8.</span> <span class="toc-text">1. 送出某样东西</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-物理安全"><span class="toc-number">9.</span> <span class="toc-text">2.物理安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-GPS跟踪器数据分析【百度云-GPS跟踪】"><span class="toc-number">10.</span> <span class="toc-text">3. GPS跟踪器数据分析【百度云 GPS跟踪】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#话的声音【变声软件】"><span class="toc-number">11.</span> <span class="toc-text">话的声音【变声软件】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-7-2-收集与组织信息的重要性"><span class="toc-number">12.</span> <span class="toc-text">9.7.2 收集与组织信息的重要性</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"如何防范社会工程学攻击?　| Eric　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/09/26/社会工程学/" data-title="如何防范社会工程学攻击?" data-url="http://yoursite.com/2016/09/26/社会工程学/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"ericxiaoshuang"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/09/26/English/" title="下一篇: 以英语为例,如何记录和输出?">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/09/26/社会工程学/">如何防范社会工程学攻击?</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/26/English/">以英语为例,如何记录和输出?</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/25/9.28/">如何高效率的输出?</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/wordpress设置/">wordpress 基本设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/9.23/">你有没有想过，周末换一种生活？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/18/9.18/">时光如梭</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/9.2/">设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/9.1/">freecodecamp 中文社区</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/31/8.31/">用 python 写网络爬虫</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/8.30.2/">断点不止,时间太少</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/29/8.30/">打卡打卡</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/29/8.29/">期待星际迷航</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/为什么说编程是有史以来最好的工作/">为什么说编程是很好的工作</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/21/8.21/">零碎的时光</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/21/8.28/">BEC考试和健身目标</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/17/8.17/">当年未语未相识</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/11/8.11/">燃烧吧,小宇宙</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/07/8.8/">微信公众号</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/07/文档视频格式/">视频需要的图片和文字</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/06/免费 AE 软件 和模板教程/">After Effects免费下载</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/06/自己录制的 AE 模板教程/">AE 小白极速模板教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/06/8.6所有模板视频展示/">恋爱是最美好的时光</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/8.1/">AE创意视频-七夕惊喜</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/8.7/">创意的视频</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/7.27/">一定要想办法提高输入质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/25/7.25/">AE十分钟极速教程正式发布</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/24/7.24/">一些计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/22/7.22/">python 网络爬虫</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/21/7.21/">预告-Adobe After Effects特效模板教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/18/7.18/">新成员,小狗-乖乖</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/7.10/">看 bule 大神的 js 教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/7.9/">今天去西冲看海了~</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/web书籍推荐/">web开发入门书籍指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/7.7/">邂逅一本好书~~~</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/7.6/">使用图床IPIC</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/豆瓣读书/">豆瓣读书</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/05/写博客的基本姿势(hexo架构)/">写博客的基本姿势(hexo架构)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/05/7.5/">关于每天的一些的学习计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/05/github/">github入门与实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/04/7.4/">去美国出差，怎么玩才好？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/02/7.2/">周末去哪儿？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/语法测试副本/">markdwon语法测试效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/7.1/">去加班</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/大家有哪些学习技巧或者心得可以分享一下？/">【知乎】大家有哪些学习技巧或者心得可以分享一下？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/30/6.30/">晨间的生活&健身&学习安排</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/28/前端学习计划6.28/">一些学习计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/28/markdown语法/">markdwon语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/hexo首页头像设置/">关于hexo首页头像设置的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/用hexo搭建静态博客/">如何用github—hexo搭建一个静态博客？</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Eric
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80042020-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
